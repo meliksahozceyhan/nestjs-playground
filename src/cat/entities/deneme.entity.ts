@@ -5,9 +5,9 @@ import { DefineMetadata } from 'src/decorators/decorators'
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
 
 @Entity()
-@DefineMetadata({ permission: 'cat', urlPrefix: 'Hello', title: 'cat' })
+@DefineMetadata({ permission: 'deneme', urlPrefix: 'deneme', title: 'deneme' })
 @Injectable()
-export class Cat {
+export class Deneme {
   @PrimaryGeneratedColumn('uuid')
   id: string
 

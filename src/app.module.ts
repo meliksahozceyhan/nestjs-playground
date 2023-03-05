@@ -6,9 +6,12 @@ import { AppService } from './app.service'
 import { CatModule } from './cat/cat.module'
 import databaseConfig from './config/database.config'
 import { DatabaseModule } from './database/database.module'
+//import { MetadataModule } from './metadata/metadata.module'
+import { UserModule } from './user/user.module'
 
 @Module({
   imports: [
+    UserModule,
     CatModule,
     DevtoolsModule.register({
       port: 3001,
