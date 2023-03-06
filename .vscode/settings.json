@@ -4,5 +4,7 @@
   "editor.tabSize": 2,
   "prettier.useTabs": true,
   "editor.rulers": [150],
-  "window.title": "NestJS Playground"
+  "window.title": "NestJS Playground",
+  "editor.fontSize": 12,
+  "terminal.integrated.fontSize": 12
 }

@@ -1,13 +1,18 @@
 import { Injectable, Logger, NotFoundException, OnModuleInit } from '@nestjs/common'
 import { Reflector } from '@nestjs/core'
-import { DefineMetadata } from 'src/decorators/decorators'
+import { METADATA_VALUE } from './decorators'
+import { EntityNotListedException } from './exceptions/entity-not-listed.exception'
 
 @Injectable()
 export class MetadataService implements OnModuleInit {
   private readonly logger = new Logger(MetadataService.name)
 
   constructor(private readonly reflector: Reflector, private readonly entities: any[]) {
-    this.findClassesWithDecorator(entities, DefineMetadata)
+    try {
+      this.findClassesWithDecorator(entities, METADATA_VALUE)
+    } catch (error) {
+      console.error(error)
+    }
   }
   onModuleInit() {
     this.logger.log('Total Number of classes that are annotated with DefineMetadata: ' + this.myList.length)
@@ -20,7 +25,7 @@ export class MetadataService implements OnModuleInit {
   }
 
   getMetadataValueOfKey(title: string) {
-    const foundValue = this.myList.find((metadata) => metadata.classValues.title === title)
+    const foundValue = this.myList.find((metadata) => metadata.classValues.value === title)
     if (foundValue !== undefined) {
       return foundValue.classValues
     } else {
@@ -28,23 +33,16 @@ export class MetadataService implements OnModuleInit {
     }
   }
 
-  private findClassesWithDecorator<T extends { new (...args: any[]): object }>(
-    targetClass: T[],
-    decorator: any,
-    processedClasses: Set<T> = new Set()
-  ) {
-    const classes = targetClass
-
-    while (classes.length > 0) {
-      const currentClass = classes.pop()
-      if (!currentClass || processedClasses.has(currentClass)) {
-        continue
-      }
-      processedClasses.add(currentClass)
-
-      const classValues = this.reflector.get(decorator.name, currentClass)
+  private findClassesWithDecorator<T extends { new (...args: any[]): object }>(targetClasses: T[], decorator: any) {
+    const classes = targetClasses
+    console.log(classes)
+    for (const classToProcess of classes) {
+      const classValues = this.reflector.get(decorator, classToProcess)
+      console.log(classValues)
       if (classValues) {
-        this.addMember({ currentClass: currentClass, classValues: classValues })
+        this.addMember({ currentClass: classToProcess, classValues: classValues })
+      } else {
+        throw new EntityNotListedException(classToProcess.name)
       }
     }
   }

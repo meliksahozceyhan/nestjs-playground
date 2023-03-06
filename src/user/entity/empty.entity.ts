@@ -4,8 +4,8 @@ import { ClassMetadata } from 'src/metadata/decorators'
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
 
 @Entity()
-@ClassMetadata({ title: 'user', urlPrefix: 'getUser', permission: 'user' })
-export class User {
+@ClassMetadata({})
+export class HelloEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string
 

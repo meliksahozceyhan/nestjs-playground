@@ -18,9 +18,9 @@ import { SnakeNamingStrategy } from 'typeorm-naming-strategies'
         schema: configService.get('database.schema'),
         entities: ['dist/**/*.entity{.js,.ts}'],
         migrationsTableName: 'typeorm_migrations',
-        migrations: ['src/**/*.migration{.ts,.js}'],
+        migrations: ['dist/**/*.migration{.ts,.js}'],
         cli: {
-          migrationsDir: 'src/migration'
+          migrationsDir: 'dist/migration'
         },
         synchronize: true,
         logging: false,

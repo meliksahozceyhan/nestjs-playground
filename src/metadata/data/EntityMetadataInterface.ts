@@ -1,5 +1,5 @@
 export class EntityMetadataInterface {
-  title: string
+  value: string
   permission: string
   itemKey: string
   deletable: boolean

@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common'
 import { ApiProperty } from '@nestjs/swagger'
 import { IsNotEmpty } from 'class-validator'
-import { DefineMetadata } from 'src/decorators/decorators'
+import { ClassMetadata } from 'src/metadata/decorators'
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
 
-@Entity()
-@DefineMetadata({ permission: 'cat', urlPrefix: 'Hello', title: 'cat' })
+@Entity('Cat')
+@ClassMetadata({ permission: 'cat', urlPrefix: 'Hello', title: 'cat' })
 @Injectable()
 export class Cat {
   @PrimaryGeneratedColumn('uuid')

@@ -7,7 +7,7 @@ import { DynoMetadataModule } from 'src/metadata/dyno-metada.module'
 import { Deneme } from './entities/deneme.entity'
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Cat]), DynoMetadataModule.forFeature([Cat, Deneme])],
+  imports: [TypeOrmModule.forFeature([Cat, Deneme]), DynoMetadataModule.forFeature([Cat, Deneme])],
   controllers: [CatController],
   providers: [CatService]
 })
