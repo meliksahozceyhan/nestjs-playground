@@ -8,8 +8,4 @@ export class CatService extends TypeOrmCrudService<Cat> {
   constructor(@InjectRepository(Cat) repo: Repository<Cat>) {
     super(repo)
   }
-
-  public async getAll(): Promise<Cat[]> {
-    return await this.repo.find()
-  }
 }

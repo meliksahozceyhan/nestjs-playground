@@ -17,6 +17,10 @@
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
-    "alwaysStrict": false
+    "alwaysStrict": false,
+    "paths": {
+      "@meliksahozceyhan/metadata": ["libs/metadata/src"],
+      "@meliksahozceyhan/metadata/*": ["libs/metadata/src/*"]
+    }
   }
 }

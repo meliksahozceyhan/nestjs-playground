@@ -4,13 +4,13 @@ import { MetadataController } from './metadata.controller'
 import { MetadataService } from './metadata.service'
 
 @Module({})
-export class DynoMetadataModule {
+export class MetadataModule {
   static entities: any[] = []
   static forFeature(entities: any[]): DynamicModule {
     this.entities.push(...entities)
     const providers = this.createProviders()
     return {
-      module: DynoMetadataModule,
+      module: MetadataModule,
       providers: providers,
       controllers: [MetadataController],
       exports: [MetadataService]

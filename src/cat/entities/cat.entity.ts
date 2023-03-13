@@ -1,12 +1,19 @@
-import { Injectable } from '@nestjs/common'
 import { ApiProperty } from '@nestjs/swagger'
 import { IsNotEmpty } from 'class-validator'
-import { ClassMetadata } from 'src/metadata/decorators'
+import { ClassMetadata, ColumnMetadata, TabMetadata } from '@meliksahozceyhan/metadata'
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
 
-@Entity('Cat')
-@ClassMetadata({ permission: 'cat', urlPrefix: 'Hello', title: 'cat' })
-@Injectable()
+@ClassMetadata({
+  permission: 'cat',
+  value: 'cat',
+  addable: true,
+  deletable: true,
+  baseUrl: '/api/v1/cat',
+  getUrl: '/getCats',
+  detailTitle: 'catName',
+  responseKey: 'cats'
+})
+@Entity('cat')
 export class Cat {
   @PrimaryGeneratedColumn('uuid')
   id: string
@@ -20,6 +27,17 @@ export class Cat {
   @IsNotEmpty()
   @ApiProperty()
   @Column({ name: 'cat_name', nullable: false })
+  @ColumnMetadata({
+    addable: true,
+    formType: 'textfield',
+    getUrl: '',
+    itemKey: 'catName',
+    searchable: true,
+    searchKey: 'catName',
+    showInTable: true,
+    sortable: true,
+    width: 30
+  })
   catName: string
 
   @IsNotEmpty()
@@ -34,5 +52,6 @@ export class Cat {
 
   @ApiProperty()
   @Column({ name: 'name', nullable: true })
+  @TabMetadata('inline')
   name: string
 }

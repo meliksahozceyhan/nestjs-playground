@@ -8,15 +8,15 @@ async function bootstrap() {
   app.enableCors()
 
   app.useGlobalFilters(new QueryFailedExceptionFilter())
-  const config = new DocumentBuilder()
-    .setTitle('Playground For Learning NestJs and Future endavour ')
-    .setDescription('This Page is the Swagger OpenAPI documentation for Playground Project')
-    .setVersion('1.0')
-    .addTag('Playground')
-    .build()
+  // const config = new DocumentBuilder()
+  //   .setTitle('Playground For Learning NestJs and Future endavour ')
+  //   .setDescription('This Page is the Swagger OpenAPI documentation for Playground Project')
+  //   .setVersion('1.0')
+  //   .addTag('Playground')
+  //   .build()
 
-  const document = SwaggerModule.createDocument(app, config)
-  SwaggerModule.setup('swagger/api/v1', app, document)
+  // const document = SwaggerModule.createDocument(app, config)
+  // SwaggerModule.setup('swagger/api/v1', app, document)
 
   await app.listen(3000)
 }
