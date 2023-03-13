@@ -1,7 +1,8 @@
-import { Exclude, instanceToPlain } from 'class-transformer'
+import { instanceToPlain } from 'class-transformer'
 import { IsNotEmpty, Length } from 'class-validator'
 import { ClassMetadata, ColumnMetadata } from '@meliksahozceyhan/metadata'
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
+import { ApiProperty } from '@nestjs/swagger'
 
 @ClassMetadata({
   permission: 'user',
@@ -26,10 +27,12 @@ export class User {
 
   @IsNotEmpty()
   @Length(1, 64)
+  @ApiProperty()
   @Column({ length: 128, nullable: false, unique: true })
   email: string
 
   @IsNotEmpty()
+  @ApiProperty()
   @Column({ nullable: false })
   @ColumnMetadata({
     addable: true,
@@ -45,15 +48,17 @@ export class User {
   fullName: string
 
   @IsNotEmpty()
-  @Exclude()
+  @ApiProperty()
   @Column({ nullable: false })
   password: string
 
   @IsNotEmpty()
+  @ApiProperty()
   @Column({ nullable: false })
   dateOfBirth: Date
 
   @IsNotEmpty()
+  @ApiProperty()
   @Column({ nullable: false })
   @ColumnMetadata({
     addable: true,
@@ -69,10 +74,12 @@ export class User {
   city: string
 
   @IsNotEmpty()
+  @ApiProperty()
   @Column({ nullable: false })
   address: string
 
   @Column({ nullable: true })
+  @ApiProperty()
   profileImage: string
 
   toJSON() {

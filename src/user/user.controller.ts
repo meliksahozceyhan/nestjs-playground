@@ -1,4 +1,4 @@
-import { Controller } from '@nestjs/common'
+import { Controller, Get, Query } from '@nestjs/common'
 import { Crud, CrudController } from '@nestjsx/crud'
 import { User } from './entities/user.entity'
 import { UserService } from './user.service'
@@ -14,4 +14,9 @@ import { UserService } from './user.service'
 @Controller('/user')
 export class UserController implements CrudController<User> {
   constructor(public service: UserService) {}
+
+  @Get('getByEmail')
+  public async getUserByEmail(@Query('email') email: string): Promise<User> {
+    return await this.service.getUserByEmail(email)
+  }
 }
