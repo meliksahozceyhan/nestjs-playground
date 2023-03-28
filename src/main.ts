@@ -4,7 +4,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import { QueryFailedExceptionFilter } from './filters/query-failed-exception.filter'
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, { snapshot: true })
+  const app = await NestFactory.create(AppModule)
   app.enableCors()
 
   app.useGlobalFilters(new QueryFailedExceptionFilter())

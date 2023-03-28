@@ -6,5 +6,6 @@
   "editor.rulers": [150],
   "window.title": "NestJS Playground",
   "editor.fontSize": 12,
-  "terminal.integrated.fontSize": 12
+  "terminal.integrated.fontSize": 12,
+  "better-comments.multilineComments": true
 }
