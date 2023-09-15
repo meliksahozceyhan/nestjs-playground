@@ -12,6 +12,12 @@ async function bootstrap() {
     .setTitle('Playground For Learning NestJs and Future endavour ')
     .setDescription('This Page is the Swagger OpenAPI documentation for Playground Project')
     .setVersion('1.0')
+    .addBearerAuth({
+      name: 'bearer',
+      type: 'http',
+      scheme: 'bearer',
+      bearerFormat: 'JWT'
+    })
     .addTag('Playground')
     .build()
 

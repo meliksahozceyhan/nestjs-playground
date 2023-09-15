@@ -1,7 +1,6 @@
 import { ExecutionContext, Injectable } from '@nestjs/common'
 import { Reflector } from '@nestjs/core'
 import { AuthGuard } from '@nestjs/passport'
-import { Request } from 'express'
 import { IS_PUBLIC_KEY } from 'src/decorators/decorator.constants'
 
 @Injectable()
@@ -17,7 +16,7 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
     }
     const superResult = await super.canActivate(context)
     if (!superResult) return false
-    const httpRequest = context.switchToHttp().getRequest() as Request
+    //const httpRequest = context.switchToHttp().getRequest() as Request
     return true
   }
 }

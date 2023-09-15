@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { IsNotEmpty } from 'class-validator'
-import { ClassMetadata, ColumnMetadata, TabMetadata } from '@meliksahozceyhan/metadata'
+import { ClassMetadata, ColumnMetadata } from '@meliksahozceyhan/metadata'
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
 
 @ClassMetadata({
@@ -49,9 +49,4 @@ export class Cat {
   @ApiProperty()
   @Column({ name: 'species', nullable: false })
   species: string
-
-  @ApiProperty()
-  @Column({ name: 'name', nullable: true })
-  @TabMetadata('inline')
-  name: string
 }

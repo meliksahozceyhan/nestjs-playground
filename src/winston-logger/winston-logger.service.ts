@@ -21,8 +21,8 @@ export class WinstonLoggerService implements LoggerService {
         new transports.MongoDB({
           db: process.env.MONGO_URI,
           dbName: 'log',
-          format: combine(timestamp(), json(), format.metadata({ fillWith: ['class', 'user', 'context'] })),
-          level: 'warn',
+          format: combine(timestamp(), json(), format.metadata()),
+          level: 'info',
           label: CATEGORY,
           storeHost: true,
           options: {
@@ -44,8 +44,7 @@ export class WinstonLoggerService implements LoggerService {
   }
 
   log(message: any, ...optionalParams: any[]) {
-    const reconstructedMessage = `[${optionalParams}] - ${message}`
-    this.logger.log('info', reconstructedMessage, ...optionalParams)
+    this.logger.log('info', message, ...optionalParams)
   }
   error(message: any, ...optionalParams: any[]) {
     this.logger.log('error', message, ...optionalParams)

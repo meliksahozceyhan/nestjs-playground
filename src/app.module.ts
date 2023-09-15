@@ -10,6 +10,8 @@ import { ApiModule } from './api/api.module'
 import { AuthModule } from './auth/auth.module'
 import secretConfig from './config/secret.config'
 import { WinstonLoggerModule } from './winston-logger/winston-logger.module'
+import { LoggingInterceptor } from './interceptors/logger.interceptor'
+import { JwtAuthGuard } from './auth/guards/jwt-auth.guard'
 
 @Module({
   imports: [
@@ -24,6 +26,16 @@ import { WinstonLoggerModule } from './winston-logger/winston-logger.module'
     WinstonLoggerModule
   ],
   controllers: [AppController],
-  providers: [AppService]
+  providers: [
+    AppService,
+    {
+      provide: 'APP_INTERCEPTOR',
+      useClass: LoggingInterceptor
+    },
+    {
+      provide: 'APP_GUARD',
+      useClass: JwtAuthGuard
+    }
+  ]
 })
 export class AppModule {}
